@@ -1,0 +1,21 @@
+{
+  "name": "api-devto",
+  "version": "1.0.0",
+  "description": "Proyect to apiTo for the team integrate to Hugo, Cristian and Héctor.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "devTo",
+    "nodejs",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "Hugo, Cristian and Héctor",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.4"
+  }
+}
