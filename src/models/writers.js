@@ -25,7 +25,13 @@ const writerSchema = new mg.Schema({
         maxLength: 10
     },
     email:{
-
+        type: String,
+        required: true,
+        match: /.+@.+\..+/
+    },
+    password: {
+        type: String,
+        required: true,
     }
    
 });

@@ -1,10 +1,10 @@
 const express = require('express');
 const useCaseWriter = require('../useCase/writers');
-const auth = require('../middleware/auth');
+
 
 const router = express.Router();
 
-router.use(auth);
+
 
 router.get('/', async (req, res)=>{
     try {
@@ -27,24 +27,43 @@ router.get('/', async (req, res)=>{
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/singup', async (req, res) => {
     try {
         const writerData = req.body;
+        const writerCreated = await users.singUp(writerData);
         
-        const writer = await useCaseWriter.createWriter(writerData);
-
+        
         res.json({
             success: true,
-            message: 'Created Writer',
-            data:{
-                data: writer
-            }
+            message: 'create writer'
         })
     } catch (error) {
-        res.status(400);
+        res.json({
+            message: 'error',
+            success: false
+        })
+    }
+
+})
+router.post('/login',async (req, res) => {
+    try {
+        const {email, password} = req.body;
+        const token = await writer.login(email, password)
+        
+        res.json({
+            success: true,
+            message: 'Writer logged In',
+            data:{
+                token
+            }
+        })
+
+
+    } catch (error) {
+        res.status(400)
         res.json({
             success: false,
-            message: 'Error to create post',
+            message: 'Could not register',
             error: error.message
         })
     }
