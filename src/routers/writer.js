@@ -1,20 +1,20 @@
 const express = require('express');
-const useCasePost = require('../useCase/post');
+const useCaseWriter = require('../useCase/writers');
 const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-router.use(auth)
+router.use(auth);
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res)=>{
     try {
-        const allPost = await useCasePost.getAll()
+        const allWrited = await useCaseWriter.getAll()
 
         res.json({
             success:true,
-            message: 'All post', 
+            message: 'All Writer', 
             data:{
-                post: allPost
+                post: allWrited
             }
         })
     } catch (error) {
@@ -22,20 +22,22 @@ router.get('/', async (req, res) => {
         res.json({
             success:false,
             error: error.message,
-            message: 'Post not found'
+            message: 'Writer not found'
         })
     }
 })
+
 router.post('/', async (req, res) => {
     try {
-        const postData = req.body;
-        const post = await useCasePost.createPost(postData);
+        const writerData = req.body;
+        
+        const writer = await useCaseWriter.createWriter(writerData);
 
         res.json({
             success: true,
-            message: 'Created Post',
+            message: 'Created Writer',
             data:{
-                data: post
+                data: writer
             }
         })
     } catch (error) {

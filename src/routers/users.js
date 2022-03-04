@@ -6,7 +6,7 @@ const router = express.Router()
 router.post('/singup', async (req, res) => {
     try {
         const userData = req.body;
-        console.log(userData);const userCreated = await users.singUp(userData);
+        const userCreated = await users.singUp(userData);
         
         
         res.json({
@@ -27,7 +27,7 @@ router.post('/login',async (req, res) => {
     try {
         const {email, password} = req.body;
         const token = await users.login(email, password)
-
+        
         res.json({
             success: true,
             message: 'User logged In',

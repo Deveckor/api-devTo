@@ -1,10 +1,10 @@
 const Post = require('../models/post');
 
 const getAll = ()=>{
-    const dataPost = await 
+    return Post.find({})
 }
 const createPost = (dataPost) =>{
-    const {author, article,reaction, comment} = dataPost;
+    const {author, article, reaction, comment} = dataPost;
     return Post.create(dataPost);
 }
 

@@ -24,7 +24,7 @@ async function login(email, password){
     const isValidPassword = await cryp.compare(password, userFound.password)
 
     if(!isValidPassword) throw new Error('Invalid credentials');
-
+    
     return jwt.sign({id: userFound.id})
     
     

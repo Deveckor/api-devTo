@@ -1,29 +1,32 @@
 const mg = require('mongoose');
 
-const writerSchema = new Schema({
-    name: {
-        type: 'string',
-        required: true,
-        minLength: 2,
-        maxLength: 25,
-        trim: true
-    },
+
+const writerSchema = new mg.Schema({
+    
     avatar:{
-        type: 'string',
+        type: String,
         required: false,
     },
     bio:{
-        type: 'string',
+        type: String,
         required: true,
         minLength: 10,
         maxLength: 255
     },
     nationality:{
-        type: 'string',
+        type: String,
         required: true,
         maxLength: 3
     },
-    user:[{type: mg.Types.ObjectId, ref: 'user'}]
+    name:{
+        type: String,
+        required: true,
+        minLength: 3,
+        maxLength: 10
+    },
+    email:{
+
+    }
    
 });
 
