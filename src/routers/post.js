@@ -1,6 +1,7 @@
 const express = require('express');
 const useCasePost = require('../useCase/post');
 const auth = require('../middleware/auth');
+const validation = require('../middleware/validation');
 const { post } = require('../server');
 
 const router = express.Router();
@@ -18,6 +19,27 @@ router.get('/', async (req, res) => {
                 post: allPost
             }
         })
+    } catch (error) {
+        res.status(400)
+        res.json({
+            success:false,
+            error: error.message,
+            message: 'Post not found'
+        })
+    }
+})
+router.get('/writer/:id', async (req, res) => {
+    try {
+        const idWriter = req.params.id;
+        const getPost = await useCasePost.getForIdWriter(idWriter);
+        res.json({
+            success:true,
+            message: 'get post for writer', 
+            data:{
+                post: getPost
+            }
+        })
+
     } catch (error) {
         res.status(400)
         res.json({
@@ -75,11 +97,15 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id',validation, async (req, res) => {
     try {
         const postData = req.body;
         const idPost = req.params.id;
-        const updatePost = await useCasePost.updatePost(idPost, postData);
+        const idAuthor = req.idAuthor.author._id;
+        
+        
+        const idNow = req.writerCurrent;
+        const updatePost = await useCasePost.updatePost(idPost, postData,idNow, idAuthor);
 
         res.json({
             success: true,
@@ -99,10 +125,12 @@ router.patch('/:id', async (req, res) => {
     }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',validation, async (req, res) => {
     try {
         const idPost = req.params.id;
-        const deletePost = await useCasePost.deletePost(idPost);
+        const idNow = req.writerCurrent;
+        const idAuthor = req.idAuthor.author._id;
+        const deletePost = await useCasePost.deletePost(idPost, idNow, idAuthor);
         res.json({
             success: true,
             message: 'delete Post',

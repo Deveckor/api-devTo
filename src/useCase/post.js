@@ -1,27 +1,34 @@
 const Post = require('../models/post');
 
 const getAll = ()=>{
-    return Post.find({}).populate({path: 'author', select:'-password -email'})
+    return Post.find({}).populate({path: 'author', select:'name'})
 }
 const createPost = async (dataPost) =>{
     const {author, title,image, article,tags, reaction, comment} = dataPost;
 
 
     const postCreated= await Post.create(dataPost);
-    return Post.findById(postCreated._id).populate({path: 'author', select:'-password -email'});
+    return Post.findById(postCreated._id).populate({path: 'author', select:'name'});
 
 }
 
-const updatePost =  (idPost, dataPost) =>{
-    const {author, title, image, article} = dataPost;
-
+const updatePost =  (idPost, dataPost, idNow, idAuthor) =>{
+    
+    if(idNow != idAuthor) throw new Error('Not permission to update this post');
     return Post.findByIdAndUpdate(idPost,dataPost,{new: true})
 }
-const deletePost =  (idPost) =>{
+const deletePost =  (idPost, idNow, idAuthor) =>{
+    
+    if(idNow != idAuthor) throw new Error('Not permission to delete this post');
+
+
     return Post.findOneAndDelete(idPost)
 }
 const getForId = (idPost) =>{
     return Post.findById(idPost)
+}
+const getForIdWriter = (idWriter) =>{
+    return Post.find({author : {_id: idWriter}}).populate({path: 'author', select:'name'})
 }
 const createComment = (idPost, dataComment) =>{
     
@@ -37,4 +44,5 @@ module.exports = {
     deletePost, 
     getForId,
     createComment,
+    getForIdWriter,
 }
