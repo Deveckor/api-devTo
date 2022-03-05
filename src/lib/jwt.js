@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'supersecret'
 
 const sign = (payload)=>{
-    return jwt.sign(payload, JWT_SECRET, {expiresIn: '1h'})
+    return jwt.sign(payload, JWT_SECRET, {expiresIn: '7d'})
 }
 
 const verify = (token)=>{

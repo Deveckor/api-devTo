@@ -25,7 +25,8 @@ const getForId = (idPost) =>{
 }
 const createComment = (idPost, dataComment) =>{
     
-    return post = Post.findByIdAndUpdate(idPost,{$push: {comment: dataComment}},{new: true})
+    
+    return post = Post.findByIdAndUpdate(idPost,{$push: { comment: dataComment}},{new: true}).populate({path: 'comment.name', select:'name'})
     
 
 }

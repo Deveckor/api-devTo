@@ -125,9 +125,10 @@ router.post('/comment/:id', async (req, res) => {
 
     try {
         const idPost = req.params.id;
-        const comment = req.body
-        console.log(comment);
-        const create = await useCasePost.createComment(idPost,comment)
+        const comment = req.body;
+        const author = req.writerCurrent;
+        
+        const create = await useCasePost.createComment(idPost,{...comment,name: author});
 
         res.json({
             success: true,
