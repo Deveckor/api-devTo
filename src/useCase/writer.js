@@ -1,4 +1,4 @@
-const Writer = require('../models/writers');
+const Writer = require('../models/writer');
 const cryp = require('../lib/bcrypt');
 const jwt = require('../lib/jwt');
 
@@ -7,15 +7,16 @@ const getAll = ()=>{
 }
 
 
-async function singUp(dataWriter) {
-    const {email, password, name} = dataWriter
+async function signUp(dataWriter) {
+    const {avatar,bio,nationality,name,email, password} = dataWriter
     const writerFound = await Writer.findOne({email: email})
 
-    if (userFound) throw new Error('User already exists')
+    if (writerFound) throw new Error('User already exists')
     
-    const passwordEncrypt = await cryp.hash(password)
-    return Writer.create({name, email, password: passwordEncrypt})
+    const passwordEncrypt = await cryp.hash(password);
+    return Writer.create({avatar, bio, nationality, name, email, password: passwordEncrypt})
 }
+
 async function login(email, password){
 
     const writerFound = await Writer.findOne({email: email});
@@ -32,6 +33,6 @@ async function login(email, password){
 }
 module.exports = {
     getAll,
-    singUp,
+    signUp,
     login
 }

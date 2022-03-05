@@ -2,12 +2,14 @@ const mg = require('mongoose');
 
 
 const postSchema = new mg.Schema({
-    author: [{type: mg.Types.ObjectId, ref: 'writers'}],
+    author: {type: mg.Types.ObjectId, ref: 'writers'},
     title:{
-
+        type: String,
+        required: true,
+        maxLength: 50
     },
     image: {
-        type: String,
+        type: String
     },
     article:{
         type: String,
@@ -16,14 +18,14 @@ const postSchema = new mg.Schema({
         required: true
     },
     tags:[{
-        type: String,
+        type: String
     }],
     reaction:{
-        type: Number,
+        type: Number
     },
     comment:[{
-        author: [{type: mg.Types.ObjectId, ref: 'writers'}],
-        content: 'string'
+        name: {type: mg.Types.ObjectId, ref: 'writers'},
+        content: String,
     }],
     
     
@@ -32,6 +34,6 @@ const postSchema = new mg.Schema({
     timestamp: true
 })
 
-const model = mg.model('post', postSchema);
+const model = mg.model('posts', postSchema);
 
 module.exports = model;

@@ -16,7 +16,8 @@ const writerSchema = new mg.Schema({
     nationality:{
         type: String,
         required: true,
-        maxLength: 3
+        minLength: 3,
+        maxLength: 10
     },
     name:{
         type: String,

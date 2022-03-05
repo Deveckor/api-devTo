@@ -1,5 +1,6 @@
 const express = require('express');
-const useCaseWriter = require('../useCase/writers');
+const useCaseWriter = require('../useCase/writer');
+
 
 
 const router = express.Router();
@@ -8,13 +9,13 @@ const router = express.Router();
 
 router.get('/', async (req, res)=>{
     try {
-        const allWrited = await useCaseWriter.getAll()
+        const allWriter = await useCaseWriter.getAll()
 
         res.json({
             success:true,
             message: 'All Writer', 
             data:{
-                post: allWrited
+                writers: allWriter
             }
         })
     } catch (error) {
@@ -27,33 +28,38 @@ router.get('/', async (req, res)=>{
     }
 })
 
-router.post('/singup', async (req, res) => {
+router.post('/signup', async (req, res) => {
     try {
         const writerData = req.body;
-        const writerCreated = await users.singUp(writerData);
+        const writerCreated = await useCaseWriter.signUp(writerData);
         
         
         res.json({
             success: true,
-            message: 'create writer'
+            message: 'create writer',
+            data:{
+                newWriter: writerCreated
+            }
         })
     } catch (error) {
         res.json({
             message: 'error',
-            success: false
+            success: false,
+            error: error.message
         })
     }
 
 })
-router.post('/login',async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const {email, password} = req.body;
-        const token = await writer.login(email, password)
+        const token = await useCaseWriter.login(email, password)
         
         res.json({
             success: true,
             message: 'Writer logged In',
             data:{
+                
                 token
             }
         })

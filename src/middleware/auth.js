@@ -10,6 +10,7 @@ function auth(req, res, next) {
         
 
         if(!isValidToken) throw new Error('Not authorized')
+        req.writerCurrent = isValidToken.id;
         next();
     } catch (error) {
         res.status(401)
