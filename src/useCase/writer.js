@@ -41,10 +41,15 @@ async function deleteWriter(idNow, idWriter){
     if(idWriter != idNow) throw new Error('Not permission for delete this writer')
     return Writer.findByIdAndDelete(idWriter);
 }
+
+async function getForIdWriter(idWriter){
+    return Writer.findById(isWriter);
+}
 module.exports = {
     getAll,
     signUp,
     login,
     uptadeWriter,
-    deleteWriter
+    deleteWriter,
+    getForIdWriter
 }

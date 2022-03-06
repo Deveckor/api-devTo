@@ -29,6 +29,29 @@ router.get('/', async (req, res)=>{
     }
 })
 
+router.post('/:id', async (req, res)=>{
+    try {
+        const writerId = req.params.id;
+        const writer = await useCaseWriter.getForIdWriter(writerId);
+
+        res.json({
+            success:true,
+            message: 'Writer', 
+            data:{
+                writer: writer
+            }
+        })
+        
+    } catch (error) {
+        res.status(400)
+        res.json({
+            success:false,
+            error: error.message,
+            message: 'Writer not found'
+        })
+    }
+})
+
 router.post('/signup', async (req, res) => {
     try {
         const writerData = req.body;
