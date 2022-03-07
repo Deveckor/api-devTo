@@ -1,7 +1,10 @@
 const Post = require('../models/post');
 
+
+
 const getAll = ()=>{
-    return Post.find({}).populate({path: 'author', select:'name'})
+        
+    return Post.find({}).populate({path: 'author comment.name', select:'name avatar'})
 }
 const createPost = async (dataPost) =>{
     const {author, title,image, article,tags, reaction, comment} = dataPost;
@@ -20,9 +23,9 @@ const updatePost =  (idPost, dataPost, idNow, idAuthor) =>{
 const deletePost =  (idPost, idNow, idAuthor) =>{
     
     if(idNow != idAuthor) throw new Error('Not permission to delete this post');
-
-
-    return Post.findOneAndDelete(idPost)
+    console.log(idAuthor);
+    console.log(idPost);
+    return Post.findByIdAndDelete(idPost)
 }
 const getForId = (idPost) =>{
     return Post.findById(idPost)

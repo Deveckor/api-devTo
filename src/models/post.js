@@ -9,6 +9,7 @@ const postSchema = new mg.Schema({
         maxLength: 50
     },
     image: {
+        required: false,
         type: String
     },
     article:{
@@ -31,9 +32,10 @@ const postSchema = new mg.Schema({
     
 },
 {
-    timestamp: true
+    timestamps: true
 })
 
 const model = mg.model('posts', postSchema);
+
 
 module.exports = model;

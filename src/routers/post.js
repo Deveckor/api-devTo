@@ -11,7 +11,7 @@ router.use(auth)
 router.get('/', async (req, res) => {
     try {
         const allPost = await useCasePost.getAll()
-        console.log(req.writerCurrent);
+        
         res.json({
             success:true,
             message: 'All post', 

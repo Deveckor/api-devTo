@@ -43,7 +43,7 @@ async function deleteWriter(idNow, idWriter){
 }
 
 async function getForIdWriter(idWriter){
-    return Writer.findById(isWriter);
+    return Writer.findById(idWriter);
 }
 module.exports = {
     getAll,
