@@ -1,9 +1,9 @@
+require('dotenv').config;
 const mg = require('mongoose');
-const credencials = require('../credencials/credencials');
-const DB_USER = credencials.user;
-const DB_PASSWORD = credencials.password;
-const DB_HOST = 'devtoproyect.1fyom.mongodb.net';
-const DB_NAME = 'devTo';
+const DB_USER = process.env.DB_USER;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_HOST = process.env.DB_HOST;
+const DB_NAME = process.env.DB_NAME;
 
 const URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`;
 
