@@ -1,7 +1,7 @@
 const server = require('./src/server');
 const dbConnect = require('./src/lib/bd');
 const req = require('express/lib/request');
-const port = process.env.Port || 3000;
+const port = 3000;
 
 
 
