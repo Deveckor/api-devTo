@@ -1,7 +1,7 @@
 const mg = require('mongoose');
-const credencials = require('../credencials/credencials');
-const DB_USER = credencials.user;
-const DB_PASSWORD = credencials.password;
+
+const DB_USER = 'deveckor';
+const DB_PASSWORD = '15121987roenma';
 const DB_HOST = 'devtoproyect.1fyom.mongodb.net';
 const DB_NAME = 'devTo';
 
