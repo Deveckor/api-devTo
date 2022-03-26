@@ -2,7 +2,7 @@ const express = require('express');
 const useCasePost = require('../useCase/post');
 const auth = require('../middleware/auth');
 const validation = require('../middleware/validation');
-const { post } = require('../server');
+
 
 const router = express.Router();
 
