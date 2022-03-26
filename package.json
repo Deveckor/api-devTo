@@ -4,7 +4,7 @@
   "description": "Proyect to apiTo for the team integrate to Hugo, Cristian and Héctor.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    
     "start": "node index.js"
     
   },
@@ -26,5 +26,9 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
+  },
+  "engines": {
+    "node": "16.14.0",
+    "npm": "8.3.1"
   }
 }
