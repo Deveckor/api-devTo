@@ -8,6 +8,10 @@ const server = express();
 
 server.use(express.json())
 server.use(cors())
+server.get('/', function(req, res) {
+    res.render('get')
+    res.end();
+})
 server.use('/post', post);
 server.use('/writer',writer);
 
