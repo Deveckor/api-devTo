@@ -96,6 +96,29 @@ router.post('/', async (req, res) => {
         })
     }
 })
+router.patch('/reaction/:id', async (req, res) => {
+    try {
+        const postReaction = req.body;
+        const idPost = req.params.id;
+
+        const post = await useCasePost.updateReaction(idPost, postReaction);
+
+        res.json({
+            success: true,
+            message: 'reaction +1',
+            data:{
+                data: post
+            }
+        })
+    } catch (error) {
+        res.status(400);
+        res.json({
+            success: false,
+            message: 'Error to reaction',
+            error: error.message
+        })
+    }
+})
 
 router.patch('/:id',validation, async (req, res) => {
     try {

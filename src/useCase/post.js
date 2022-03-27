@@ -20,6 +20,10 @@ const updatePost =  (idPost, dataPost, idNow, idAuthor) =>{
     if(idNow != idAuthor) throw new Error('Not permission to update this post');
     return Post.findByIdAndUpdate(idPost,dataPost,{new: true})
 }
+
+const updateReaction = (idPost, dataReaction)=>{
+    return Post.findByIdAndUpdate(idPost, dataReaction,{new: true})
+};
 const deletePost =  (idPost, idNow, idAuthor) =>{
     
     if(idNow != idAuthor) throw new Error('Not permission to delete this post');
@@ -48,4 +52,5 @@ module.exports = {
     getForId,
     createComment,
     getForIdWriter,
+    updateReaction
 }
