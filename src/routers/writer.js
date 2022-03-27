@@ -83,7 +83,6 @@ router.post('/login', async (req, res) => {
             success: true,
             message: 'Writer logged In',
             data:{
-                
                 token
             }
         })
