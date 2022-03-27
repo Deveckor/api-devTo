@@ -24,6 +24,8 @@ const updatePost =  (idPost, dataPost, idNow, idAuthor) =>{
 const updateReaction = (idPost, dataReaction)=>{
     return Post.findByIdAndUpdate(idPost, dataReaction,{new: true})
 };
+
+
 const deletePost =  (idPost, idNow, idAuthor) =>{
     
     if(idNow != idAuthor) throw new Error('Not permission to delete this post');
